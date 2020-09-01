@@ -102,6 +102,8 @@ def get_kml_file(year, month, day, cookie_content, folder):
     """
     cookies = dict(cookie=cookie_content)
     
+    #print(year, month, day, cookie_content, folder)
+
     if type(month) == str:
         month = month[:3].title()
         cal = {v:k for k,v in enumerate(calendar.month_abbr, -1)}
@@ -117,13 +119,13 @@ def get_kml_file(year, month, day, cookie_content, folder):
         month_file = '0' + month_file
     if len(day_file) == 1 :
         day_file = '0' + day_file
-        
-    url = 'https://www.google.com/maps/timeline/kml?authuser=0&pb=!1m8!1m3!1i{0}!2i{1}!3i{2}!2m3!1i{0}!2i{1}!3i{2}'.format(year_url, month_url, day_url)
-    time.sleep(np.random.randint(0, 0.3))
+    
+    url = 'https://www.google.com/maps/timeline/kml?authuser=2&pb=!1m8!1m3!1i{0}!2i{1}!3i{2}!2m3!1i{0}!2i{1}!3i{2}'.format(year_url, month_url, day_url)
+    time.sleep(np.random.randint(1,3))
     r = requests.get(url, cookies=cookies)
     if r.status_code == 200:
-        with open(folder + 'history-2017-{}-{}.kml'.format(month_file, day_file), 'w') as f:
-            f.write(r.text)
+        with open(folder + 'history-{}-{}-{}.kml'.format(year_file, month_file, day_file), 'w') as f:
+          f.write(r.text)
 
         
 def create_kml_files(begin_year, begin_month, begin_day, end_year, end_month, end_day, cookie_content, folder):
