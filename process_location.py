@@ -120,6 +120,7 @@ def get_kml_file(year, month, day, cookie_content, folder):
     if len(day_file) == 1 :
         day_file = '0' + day_file
     
+    
     url = 'https://www.google.com/maps/timeline/kml?authuser=2&pb=!1m8!1m3!1i{0}!2i{1}!3i{2}!2m3!1i{0}!2i{1}!3i{2}'.format(year_url, month_url, day_url)
     time.sleep(np.random.randint(1,3))
     r = requests.get(url, cookies=cookies)
